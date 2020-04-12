@@ -1,7 +1,6 @@
 package dev;
 
 import java.util.Comparator;
-
 /**
  * An enum of all material IDs accepted by the official server and client
  */
@@ -3184,9 +3183,6 @@ public enum Material {
     public final Class<?> data;
     private final boolean legacy;
     
-    private String fileNameTexture = null;
-    private String fileNameModel = null;
-
     private Material(String fileNameTexture, final int id) {
         this(fileNameTexture, id, 64);
     }
@@ -3230,8 +3226,6 @@ public enum Material {
     }
 
     private Material(String fileNameTexture, String fileNameModel, final int id, final int stack, final int durability, /*@NotNull*/ final Class<?> data) {
-    	this.fileNameTexture = fileNameTexture;
-    	this.fileNameModel = fileNameModel;
     	
         this.id = id;
         this.durability = (short) durability;
@@ -4097,14 +4091,6 @@ public enum Material {
         return null;
     }
     
-    public static Material getMaterialTexture(final String name) {
-        for(Material m : Material.values())
-        	if(m.fileNameTexture != null && m.fileNameTexture.equalsIgnoreCase(name))
-        		return m;
-        
-        return null;
-    }
-
     /**
      * Attempts to get the Material with the given name.
      * <p>
@@ -7809,10 +7795,10 @@ public enum Material {
     }
 
 	String fileNameTexture() {
-		return fileNameTexture == null ? name().toLowerCase() : fileNameTexture;
+		return name().toLowerCase();
 	}
 
 	String fileNameModel() {
-		return fileNameModel == null ? name().toLowerCase() : fileNameModel;
+		return name().toLowerCase();
 	}
 }
