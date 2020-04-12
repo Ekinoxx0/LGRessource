@@ -1,4 +1,7 @@
 package dev;
+import java.awt.color.ColorSpace;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorConvertOp;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +11,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
 import org.zeroturnaround.zip.ZipUtil;
@@ -21,7 +26,7 @@ public class App {
 	private static final String mcMeta = " {\n" + 
 										"  \"pack\": {\n" + 
 										"    \"pack_format\": PACK_FORMAT,\n" + 
-										"    \"description\": \"§9Version : §71.4.12\"\n" + 
+										"    \"description\": \"§9Version : §71.4.16\"\n" + 
 										"  }\n" + 
 										"}\n" + 
 										"";
@@ -117,7 +122,7 @@ public class App {
 		noMaterial = 0;
 		
 		for(String itemTexture : new ArrayList<String>(items_textures))
-			if(Material.getMaterial(itemTexture) == null) {
+			if(Material.getMaterial(itemTexture) == null && Material.getMaterialTexture(itemTexture) == null) {
 				noMaterial++;
 				items_textures.remove(itemTexture);
 			}
@@ -130,8 +135,12 @@ public class App {
 		Collections.reverse(available_models);
 		
 		for(String itemTexture : this.items_textures)
-			if(!available_textures.contains(Material.getMaterial(itemTexture)))
-				available_textures.add(Material.getMaterial(itemTexture));
+			if(!available_textures.contains(Material.getMaterial(itemTexture)) && !available_textures.contains(Material.getMaterialTexture(itemTexture)))
+				if(Material.getMaterial(itemTexture) == null) {
+					available_textures.add(Material.getMaterialTexture(itemTexture));
+				} else {
+					available_textures.add(Material.getMaterial(itemTexture));
+				}
 		
 		available_textures.sort(Comparator.comparing(Material::getPriority));
 		Collections.reverse(available_textures);
@@ -146,9 +155,14 @@ public class App {
 		return m;
 	}
 	
+	int needed = 0;
 	public Material getAvailableTexture() throws IOException {
+		if(available_textures.size() == 0) {
+			System.err.println("No more material.");
+			needed++;
+			return Material.AIR;
+		}
 		Material m = available_textures.remove(0);
-		if(m == null) throw new IOException("No more material available !");
 		available_models.remove(m);
 		return m;
 	}
@@ -174,7 +188,7 @@ public class App {
 			if(name.contains(".")) throw new IOException("Invalid name : " + name + " in direct texturing item");
 			specialItemsEnum += "		" + name.toUpperCase() + ",\n";
 			Material m = getAvailableTexture();
-			FileUtils.copyFile(texture, new File(generatedAssets, "textures/item/" + m.name().toLowerCase() + ".png"));
+			FileUtils.copyFile(texture, new File(generatedAssets, "textures/item/" + m.fileNameTexture() + ".png"));
 			mapping.get(specialName).put(name, m);
 		}
 		System.out.println(specials.size() + " direct texture générés (" + available_textures.size() + ")");
@@ -200,18 +214,22 @@ public class App {
 							"}";
 				Material m = getAvailableModel();
 				mapping.get(roleName).put(overlay, m);
-				FileUtils.writeStringToFile(new File(generatedAssets, "models/item/" + m.name().toLowerCase() + ".json"), json);
+				FileUtils.writeStringToFile(new File(generatedAssets, "models/item/" + m.fileNameModel() + ".json"), json);
 				fileRoleOverlayedNb++;
 			}
 			
 			Material m = getAvailableTexture();
-			FileUtils.copyFile(roleFile, new File(generatedAssets, "textures/item/" + m.name().toLowerCase() + ".png"));
+			FileUtils.copyFile(roleFile, new File(generatedAssets, "textures/item/" + m.fileNameTexture() + ".png"));
+			Material grey = getAvailableTexture();
+			copyInWhiteBlack(new File(generatedAssets, "textures/item/" + m.fileNameTexture() + ".png"), new File(generatedAssets, "textures/item/" + grey.fileNameTexture() + ".png"));
 			mapping.get(roleName).put("menu", m);
+			mapping.get(roleName).put("menu_grey", grey);
 		}
 
 		System.out.println(fileRoleOverlayedNb + " fichier rôle overlay générés");
 		System.out.println("Il reste " + available_models.size() + " models disponible");
 		System.out.println("Il reste " + available_textures.size() + " textures disponible");
+		System.err.println("Needed: " + needed);
 
 		//Exporting all data json & java
 		specialItemsEnum += "	}";
@@ -230,9 +248,35 @@ public class App {
 		System.out.println("Generated folder successfuly. Zipping it...");
 		ZipUtil.pack(generatedFolder, new File(generatedFolder.getParentFile(), "generated.zip"));
 		ZipUtil.pack(pre13, new File(generatedFolder.getParentFile(), "generated-pre13.zip"));
-		FileUtils.deleteDirectory(pre13);
-		FileUtils.deleteDirectory(generatedFolder);
+		//FileUtils.deleteDirectory(pre13);
+		//FileUtils.deleteDirectory(generatedFolder);
 		System.out.println("Ziiiiiipppppedd!");
 	}
 
+	
+	public static void copyInWhiteBlack(File input, File output) {
+        try {
+            BufferedImage image = ImageIO.read(input);
+
+            BufferedImage result = new BufferedImage(
+                    image.getWidth(),
+                    image.getHeight(),
+                    BufferedImage.TYPE_4BYTE_ABGR);
+            
+            ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+            op.filter(image, result);
+
+            
+           // Graphics2D graphic = result.createGraphics();
+            /*graphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            graphic.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            graphic.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);*/
+            /*graphic.drawImage(image, 0, 0, new Color(0, 0, 0, 0), null);
+            graphic.dispose();*/
+
+            ImageIO.write(result, "png", output);
+        }  catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
 }

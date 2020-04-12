@@ -99,7 +99,7 @@ public enum Material {
      */
     ATTACHED_PUMPKIN_STEM(12724, Object.class),
     AZURE_BLUET(17608),
-    BAKED_POTATO(14624),
+    BAKED_POTATO("potato_baked", 14624),
     /**
      * BlockData: {@link Bamboo}
      */
@@ -113,7 +113,7 @@ public enum Material {
     BAT_SPAWN_EGG(14607),
     BEACON(6608),
     BEDROCK(23130),
-    BEEF(4803),
+    BEEF("beef_raw", 4803),
     /**
      * BlockData: {@link Beehive}
      */
@@ -203,7 +203,7 @@ public enum Material {
     BLACK_CARPET(6056),
     BLACK_CONCRETE(13338),
     BLACK_CONCRETE_POWDER(16150),
-    BLACK_DYE(6202),
+    BLACK_DYE("dye_powder_black", 6202),
     /**
      * BlockData: {@link Directional}
      */
@@ -241,7 +241,7 @@ public enum Material {
     BLUE_CARPET(13292),
     BLUE_CONCRETE(18756),
     BLUE_CONCRETE_POWDER(17773),
-    BLUE_DYE(11588),
+    BLUE_DYE("dye_powder_blue", 11588),
     /**
      * BlockData: {@link Directional}
      */
@@ -269,7 +269,7 @@ public enum Material {
      */
     BONE_BLOCK(17312, Object.class),
     BONE_MEAL(32458),
-    BOOK(23097),
+    BOOK("book_normal", 23097),
     BOOKSHELF(10069),
     BOW(8745, 1, 384),
     BOWL(32661),
@@ -316,7 +316,7 @@ public enum Material {
     BROWN_CARPET(23352),
     BROWN_CONCRETE(19006),
     BROWN_CONCRETE_POWDER(21485),
-    BROWN_DYE(7648),
+    BROWN_DYE("dye_powder_brown", 7648),
     /**
      * BlockData: {@link Directional}
      */
@@ -358,7 +358,7 @@ public enum Material {
      * BlockData: {@link CoralWallFan}
      */
     BUBBLE_CORAL_WALL_FAN(20382, Object.class),
-    BUCKET(15215, 16),
+    BUCKET("bucket_empty", 15215, 16),
     /**
      * BlockData: {@link Ageable}
      */
@@ -448,7 +448,7 @@ public enum Material {
      */
     COCOA(29709, Object.class),
     COCOA_BEANS(27381),
-    COD(24691),
+    COD("fish_cod_raw", 24691),
     COD_BUCKET(28601, 1),
     COD_SPAWN_EGG(27248),
     /**
@@ -469,12 +469,12 @@ public enum Material {
      * BlockData: {@link Waterlogged}
      */
     CONDUIT(5148, Object.class),
-    COOKED_BEEF(21595),
+    COOKED_BEEF("beef_cooked", 21595),
     COOKED_CHICKEN(20780),
-    COOKED_COD(9681),
-    COOKED_MUTTON(31447),
-    COOKED_PORKCHOP(27231),
-    COOKED_RABBIT(4454),
+    COOKED_COD("fish_cod_cooked", 9681),
+    COOKED_MUTTON("mutton_cooked",31447),
+    COOKED_PORKCHOP("porkchop_cooked", 27231),
+    COOKED_RABBIT("rabbit_cooked", 4454),
     COOKED_SALMON(5615),
     COOKIE(27431),
     CORNFLOWER(15405),
@@ -513,7 +513,7 @@ public enum Material {
     CYAN_CARPET(31495),
     CYAN_CONCRETE(26522),
     CYAN_CONCRETE_POWDER(15734),
-    CYAN_DYE(8043),
+    CYAN_DYE("dye_powder_cyan", 8043),
     /**
      * BlockData: {@link Directional}
      */
@@ -786,7 +786,7 @@ public enum Material {
      * BlockData: {@link Fire}
      */
     FIRE(16396, Object.class),
-    FIREWORK_ROCKET(23841),
+    FIREWORK_ROCKET("fireworks", 23841),
     FIREWORK_STAR(12190),
     FIRE_CHARGE(4842),
     /**
@@ -833,7 +833,7 @@ public enum Material {
     GOLDEN_APPLE(27732),
     GOLDEN_AXE(4878, 1, 32),
     GOLDEN_BOOTS(7859, 1, 91),
-    GOLDEN_CARROT(5300),
+    GOLDEN_CARROT("carrot_golden", 5300),
     GOLDEN_CHESTPLATE(4507, 1, 112),
     GOLDEN_HELMET(7945, 1, 77),
     GOLDEN_HOE(19337, 1, 32),
@@ -877,7 +877,7 @@ public enum Material {
     GRAY_CARPET(26991),
     GRAY_CONCRETE(13959),
     GRAY_CONCRETE_POWDER(13031),
-    GRAY_DYE(9184),
+    GRAY_DYE("dye_powder_gray", 9184),
     /**
      * BlockData: {@link Directional}
      */
@@ -908,7 +908,7 @@ public enum Material {
     GREEN_CARPET(7780),
     GREEN_CONCRETE(17949),
     GREEN_CONCRETE_POWDER(6904),
-    GREEN_DYE(23215),
+    GREEN_DYE("dye_powder_green", 23215),
     /**
      * BlockData: {@link Directional}
      */
@@ -1124,7 +1124,7 @@ public enum Material {
     LIGHT_BLUE_CARPET(21194),
     LIGHT_BLUE_CONCRETE(29481),
     LIGHT_BLUE_CONCRETE_POWDER(31206),
-    LIGHT_BLUE_DYE(28738),
+    LIGHT_BLUE_DYE("dye_powder_light_blue", 28738),
     /**
      * BlockData: {@link Directional}
      */
@@ -1196,7 +1196,7 @@ public enum Material {
     LIME_CARPET(15443),
     LIME_CONCRETE(5863),
     LIME_CONCRETE_POWDER(28859),
-    LIME_DYE(6147),
+    LIME_DYE("dye_powder_lime", 6147),
     /**
      * BlockData: {@link Directional}
      */
@@ -1233,7 +1233,7 @@ public enum Material {
     MAGENTA_CARPET(6180),
     MAGENTA_CONCRETE(20591),
     MAGENTA_CONCRETE_POWDER(8272),
-    MAGENTA_DYE(11788),
+    MAGENTA_DYE("dye_powder_magenta", 11788),
     /**
      * BlockData: {@link Directional}
      */
@@ -1258,7 +1258,7 @@ public enum Material {
     MAGMA_CUBE_SPAWN_EGG(26638),
     MAP(21655),
     MELON(25172),
-    MELON_SEEDS(18340),
+    MELON_SEEDS("seeds_melon", 18340),
     MELON_SLICE(5347),
     /**
      * BlockData: {@link Ageable}
@@ -1319,7 +1319,7 @@ public enum Material {
     MUSIC_DISC_STRAD(16785, 1),
     MUSIC_DISC_WAIT(26499, 1),
     MUSIC_DISC_WARD(24026, 1),
-    MUTTON(4792),
+    MUTTON("mutton_raw", 4792),
     /**
      * BlockData: {@link Snowable}
      */
@@ -1328,7 +1328,7 @@ public enum Material {
     NAUTILUS_SHELL(19989),
     NETHERRACK(23425),
     NETHER_BRICK(19996),
-    NETHER_BRICKS(27802),
+    NETHER_BRICKS("netherbrick", 27802),
     /**
      * BlockData: {@link Fence}
      */
@@ -1397,7 +1397,7 @@ public enum Material {
     /**
      * BlockData: {@link Sign}
      */
-    OAK_SIGN(8192, Object.class),
+    OAK_SIGN("sign", 8192, Object.class),
     /**
      * BlockData: {@link Slab}
      */
@@ -1435,7 +1435,7 @@ public enum Material {
     ORANGE_CARPET(24752),
     ORANGE_CONCRETE(19914),
     ORANGE_CONCRETE_POWDER(30159),
-    ORANGE_DYE(13866),
+    ORANGE_DYE("dye_powder_orange", 13866),
     /**
      * BlockData: {@link Directional}
      */
@@ -1485,7 +1485,7 @@ public enum Material {
     PINK_CARPET(30186),
     PINK_CONCRETE(5227),
     PINK_CONCRETE_POWDER(6421),
-    PINK_DYE(31151),
+    PINK_DYE("dye_powder_pink", 31151),
     /**
      * BlockData: {@link Directional}
      */
@@ -1526,7 +1526,7 @@ public enum Material {
      * BlockData: {@link Snowable}
      */
     PODZOL(24068, Object.class),
-    POISONOUS_POTATO(32640),
+    POISONOUS_POTATO("potato_poisonous", 32640),
     POLAR_BEAR_SPAWN_EGG(17015),
     POLISHED_ANDESITE(8335),
     /**
@@ -1557,7 +1557,7 @@ public enum Material {
     POLISHED_GRANITE_STAIRS(29588, Object.class),
     POPPED_CHORUS_FRUIT(27844),
     POPPY(12851),
-    PORKCHOP(30896),
+    PORKCHOP("porkchop_raw", 30896),
     POTATO(21088),
     /**
      * BlockData: {@link Ageable}
@@ -1617,12 +1617,12 @@ public enum Material {
      * BlockData: {@link Fence}
      */
     PRISMARINE_WALL(18184, Object.class),
-    PUFFERFISH(8115),
+    PUFFERFISH("fish_pufferfish_raw", 8115),
     PUFFERFISH_BUCKET(8861, 1),
     PUFFERFISH_SPAWN_EGG(24570),
     PUMPKIN(19170),
     PUMPKIN_PIE(28725),
-    PUMPKIN_SEEDS(28985),
+    PUMPKIN_SEEDS("seeds_pumpkin", 28985),
     /**
      * BlockData: {@link Ageable}
      */
@@ -1695,7 +1695,7 @@ public enum Material {
      */
     RAIL(13285, Object.class),
     RAVAGER_SPAWN_EGG(8726),
-    REDSTONE(11233),
+    REDSTONE("redstone_dust", 11233),
     REDSTONE_BLOCK(19496),
     /**
      * BlockData: {@link Lightable}
@@ -1844,7 +1844,7 @@ public enum Material {
      */
     SKELETON_WALL_SKULL(31650, Object.class),
     SKULL_BANNER_PATTERN(7680, 1),
-    SLIME_BALL(5242),
+    SLIME_BALL("slimeball", 5242),
     SLIME_BLOCK(31892),
     SLIME_SPAWN_EGG(6550),
     SMITHING_TABLE(9082),
@@ -2146,7 +2146,7 @@ public enum Material {
      * BlockData: {@link Ageable}
      */
     WHEAT(27709, Object.class),
-    WHEAT_SEEDS(28742),
+    WHEAT_SEEDS("seeds_wheat", 28742),
     /**
      * BlockData: {@link Rotatable}
      */
@@ -2209,7 +2209,7 @@ public enum Material {
     YELLOW_CARPET(18149),
     YELLOW_CONCRETE(15722),
     YELLOW_CONCRETE_POWDER(10655),
-    YELLOW_DYE(5952),
+    YELLOW_DYE("dye_powder_yellow", 5952),
     /**
      * BlockData: {@link Directional}
      */
@@ -3183,6 +3183,31 @@ public enum Material {
     private final short durability;
     public final Class<?> data;
     private final boolean legacy;
+    
+    private String fileNameTexture = null;
+    private String fileNameModel = null;
+
+    private Material(String fileNameTexture, final int id) {
+        this(fileNameTexture, id, 64);
+    }
+
+    private Material(String fileNameTexture, final int id, final int stack) {
+        this(fileNameTexture, id, stack, Object.class);
+    }
+
+    private Material(String fileNameTexture, final int id, final int stack, final int durability) {
+        this(fileNameTexture, null,id, stack, durability, Object.class);
+    }
+
+    private Material(String fileNameTexture, final int id, /*@NotNull*/ final Class<?> data) {
+        this(fileNameTexture, id, 64, data);
+    }
+
+    private Material(String fileNameTexture, final int id, final int stack, /*@NotNull*/ final Class<?> data) {
+        this(fileNameTexture, null, id, stack, 0, data);
+    }
+    
+    //
 
     private Material(final int id) {
         this(id, 64);
@@ -3193,7 +3218,7 @@ public enum Material {
     }
 
     private Material(final int id, final int stack, final int durability) {
-        this(id, stack, durability, Object.class);
+        this(null, null,id, stack, durability, Object.class);
     }
 
     private Material(final int id, /*@NotNull*/ final Class<?> data) {
@@ -3201,10 +3226,13 @@ public enum Material {
     }
 
     private Material(final int id, final int stack, /*@NotNull*/ final Class<?> data) {
-        this(id, stack, 0, data);
+        this(null, null, id, stack, 0, data);
     }
 
-    private Material(final int id, final int stack, final int durability, /*@NotNull*/ final Class<?> data) {
+    private Material(String fileNameTexture, String fileNameModel, final int id, final int stack, final int durability, /*@NotNull*/ final Class<?> data) {
+    	this.fileNameTexture = fileNameTexture;
+    	this.fileNameModel = fileNameModel;
+    	
         this.id = id;
         this.durability = (short) durability;
         this.maxStack = stack;
@@ -4064,6 +4092,14 @@ public enum Material {
     public static Material getMaterial(final String name) {
         for(Material m : Material.values())
         	if(m.toString().equalsIgnoreCase(name))
+        		return m;
+        
+        return null;
+    }
+    
+    public static Material getMaterialTexture(final String name) {
+        for(Material m : Material.values())
+        	if(m.fileNameTexture != null && m.fileNameTexture.equalsIgnoreCase(name))
         		return m;
         
         return null;
@@ -7771,4 +7807,12 @@ public enum Material {
             // </editor-fold>
         }
     }
+
+	String fileNameTexture() {
+		return fileNameTexture == null ? name().toLowerCase() : fileNameTexture;
+	}
+
+	String fileNameModel() {
+		return fileNameModel == null ? name().toLowerCase() : fileNameModel;
+	}
 }
